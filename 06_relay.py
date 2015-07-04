@@ -2,24 +2,24 @@
 import RPi.GPIO as GPIO
 import time
 
-LedPin = 11    # pin11
+RelayPin = 11    # pin11
 
 def setup():
-	GPIO.setmode(GPIO.BOARD)       # Numbers pins by physical location
-	GPIO.setup(LedPin, GPIO.OUT)   # Set pin mode as output
-	GPIO.output(LedPin, GPIO.HIGH) # Set pin to high(+3.3V) to off the led
+	GPIO.setmode(GPIO.BOARD)         # Numbers pins by physical location
+	GPIO.setup(RelayPin, GPIO.OUT)   # Set pin mode as output
+	GPIO.output(RelayPin, GPIO.HIGH)
 
 def loop():
 	while True:
-		print '...led on'
-		GPIO.output(LedPin, GPIO.LOW)  # led on
+		print '...clsoe'
+		GPIO.output(RelayPin, GPIO.LOW)
 		time.sleep(0.5)
-		print 'led off...'
-		GPIO.output(LedPin, GPIO.HIGH) # led off
+		print 'open...'
+		GPIO.output(RelayPin, GPIO.HIGH)
 		time.sleep(0.5)
 
 def destroy():
-	GPIO.output(LedPin, GPIO.HIGH)     # led off
+	GPIO.output(RelayPin, GPIO.HIGH)
 	GPIO.cleanup()                     # Release resource
 
 if __name__ == '__main__':     # Program start from here
