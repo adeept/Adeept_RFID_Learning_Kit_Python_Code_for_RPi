@@ -7,7 +7,7 @@ def init():
 
 def loop():
 	while True:
-		res = ADC0832.getResult() - 80
+		res = ADC0832.getResult()
 		if res < 0:
 			res = 0
 		if res > 100:
