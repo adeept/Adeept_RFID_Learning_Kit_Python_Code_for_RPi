@@ -109,7 +109,7 @@ def loop():
 		tmp = int(raw_input('Please input a num(0~9999):'))  
 		for i in range(500):  
 			display_3(tmp)  
-			time.sleep(1)  
+		time.sleep(1)  
 
 def destroy():   #When program ending, the function is executed.   
 	for pin in pins:    
