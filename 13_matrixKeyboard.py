@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import RPi.GPIO as GPIO
 import time
  
@@ -10,11 +11,11 @@ class keypad():
     ["*",0,"#","D"]
     ]
      
-    ROW         = [27,23,24,25]
-    COLUMN      = [4,17,22,5]
+    ROW         = [11,12,13,15]
+    COLUMN      = [16,18,22,7]
      
     def __init__(self):
-        GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BOARD)
      
     def getKey(self):
          
@@ -42,7 +43,7 @@ class keypad():
          
         # Convert columns to input
         for j in range(len(self.COLUMN)):
-                GPIO.setup(self.COLUMN[j], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+			GPIO.setup(self.COLUMN[j], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
          
         # Switch the i-th row found from scan to output
         GPIO.setup(self.ROW[rowVal], GPIO.OUT)
