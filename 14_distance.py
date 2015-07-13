@@ -17,7 +17,7 @@ def checkdist():
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(16,GPIO.OUT,initial=GPIO.LOW)
 GPIO.setup(18,GPIO.IN)
-time.sleep(16)
+time.sleep(2)
 try:
 	while True:
 		print 'Distance: %0.2f m' %checkdist()
