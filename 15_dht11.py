@@ -1,87 +1,75 @@
 #!/usr/bin/python
+
 import RPi.GPIO as GPIO
 import time
 
-def bin2dec(string_num):
-	return str(int(string_num, 2))
-
+channel = 18
 data = []
+j = 0
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(4,GPIO.OUT)
-GPIO.output(4,GPIO.HIGH)
-time.sleep(0.025)
-GPIO.output(4,GPIO.LOW)
+
+time.sleep(1)
+
+GPIO.setup(channel, GPIO.OUT)
+
+GPIO.output(channel, GPIO.LOW)
 time.sleep(0.02)
+GPIO.output(channel, GPIO.HIGH)
 
-GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(channel, GPIO.IN)
 
-for i in range(0,500):
-	data.append(GPIO.input(4))
+while GPIO.input(channel) == GPIO.LOW:
+	continue
 
-bit_count = 0
-tmp = 0
-count = 0
-HumidityBit = ""
-TemperatureBit = ""
-crc = ""
+while GPIO.input(channel) == GPIO.HIGH:
+	continue
 
-try:
-	while data[count] == 1:
-		tmp = 1
-		count = count + 1
+while j < 40:
+	k = 0
+	while GPIO.input(channel) == GPIO.LOW:
+		continue
 
-	for i in range(0, 32):
-		bit_count = 0
+	while GPIO.input(channel) == GPIO.HIGH:
+		k += 1
+		if k > 100:
+			break
 
-	while data[count] == 0:
-		tmp = 1
-		count = count + 1
-
-	while data[count] == 1:
-		bit_count = bit_count + 1
-		count = count + 1
-
-	if bit_count > 3:
-		if i>=0 and i<8:
-			HumidityBit = HumidityBit + "1"
-		if i>=16 and i<24:
-			TemperatureBit = TemperatureBit + "1"
+	if k < 8:
+		data.append(0)
 	else:
-		if i>=0 and i<8:
-			HumidityBit = HumidityBit + "0"
-		if i>=16 and i<24:
-			TemperatureBit = TemperatureBit + "0"
+		data.append(1)
 
-except:
-	print "ERR_RANGE"
-	exit(0)
+	j += 1
 
-try:
-	for i in range(0, 8):
-		bit_count = 0
+print "sensor is working."
+print data
 
-		while data[count] == 0:
-			tmp = 1
-			count = count + 1
+humidity_bit = data[0:8]
+humidity_point_bit = data[8:16]
+temperature_bit = data[16:24]
+temperature_point_bit = data[24:32]
+check_bit = data[32:40]
 
-		while data[count] == 1:
-			bit_count = bit_count + 1
-			count = count + 1
+humidity = 0
+humidity_point = 0
+temperature = 0
+temperature_point = 0
+check = 0
 
-		if bit_count > 3:
-			crc = crc + "1"
-		else:
-			crc = crc + "0"
-except:
-	print "ERR_RANGE"
-exit(0)
+for i in range(8):
+	humidity += humidity_bit[i] * 2 ** (7 - i)
+	humidity_point += humidity_point_bit[i] * 2 ** (7 - i)
+	temperature += temperature_bit[i] * 2 ** (7 - i)
+	temperature_point += temperature_point_bit[i] * 2 ** (7 - i)
+	check += check_bit[i] * 2 ** (7 - i)
 
-Humidity = bin2dec(HumidityBit)
-Temperature = bin2dec(TemperatureBit)
+tmp = humidity + humidity_point + temperature + temperature_point
 
-if int(Humidity) + int(Temperature) - int(bin2dec(crc)) == 0:
-	print Humidity
-	print Temperature
+if check == tmp:
+	print "temperature : ", temperature, ", humidity : " , humidity
 else:
-	print "ERR_CRC"
+	print "wrong"
+	print "temperature : ", temperature, ", humidity : " , humidity, " check : ", check, " tmp : ", tmp
+
+GPIO.cleanup()
