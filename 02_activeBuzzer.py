@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 import time
 
-BeepPin = 11    # pin11
+BeepPin = 12    # pin12
 
 def setup():
 	GPIO.setmode(GPIO.BOARD)        # Numbers pins by physical location
