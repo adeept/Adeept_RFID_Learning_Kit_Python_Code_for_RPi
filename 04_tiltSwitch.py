@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import RPi.GPIO as GPIO
 
-TiltPin = 11
-LedPin  = 12
+TiltPin = 12    # Set Physical Pin number
+LedPin  = 11    # Set Phyiscal Pin number
 
 Led_status = 1
 
