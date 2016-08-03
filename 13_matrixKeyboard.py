@@ -5,14 +5,14 @@ import time
 class keypad():
     # CONSTANTS   
     KEYPAD = [
-    [1,2,3,"A"],
-    [4,5,6,"B"],
-    [7,8,9,"C"],
-    ["*",0,"#","D"]
+        [1, 2, 3, "A"],
+        [4, 5, 6, "B"],
+        [7, 8, 9, "C"],
+        ["*", 0, "#", "D"]
     ]
      
-    ROW         = [11,12,13,15]
-    COLUMN      = [16,18,22,7]
+    ROW = [11, 12, 13, 15]
+    COLUMN = [16, 18, 22, 7]
      
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
@@ -43,19 +43,19 @@ class keypad():
          
         # Convert columns to input
         for j in range(len(self.COLUMN)):
-			GPIO.setup(self.COLUMN[j], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+            GPIO.setup(self.COLUMN[j], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
          
         # Switch the i-th row found from scan to output
         GPIO.setup(self.ROW[rowVal], GPIO.OUT)
         GPIO.output(self.ROW[rowVal], GPIO.HIGH)
  
         # Scan columns for still-pushed key/button
-        # A valid key press should set "colVal"  between 0 and 2.
+        # A valid key press should set "colVal"  between 0 and 3.
         colVal = -1
         for j in range(len(self.COLUMN)):
             tmpRead = GPIO.input(self.COLUMN[j])
             if tmpRead == 1:
-                colVal=j
+                colVal = j
                  
         # if colVal is not 0 thru 2 then no button was pressed and we can exit
         if colVal < 0 or colVal > 3:
