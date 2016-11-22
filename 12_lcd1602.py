@@ -265,5 +265,15 @@ def loop():
 		lcd.message("Welcom to --->\n  adeept.com")
 		sleep(2)
 
+def destroy():
+	lcd = Adafruit_CharLCD()
+	lcd.clear()
+
 if __name__ == '__main__':
-	loop()
+	try:
+		loop()
+	except KeyboardInterrupt:
+		destroy()
+
+
+	
