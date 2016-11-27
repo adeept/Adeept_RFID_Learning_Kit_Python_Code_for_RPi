@@ -2,8 +2,7 @@
 import RPi.GPIO as GPIO
 import time
 
-pins = [11, 12, 13, 15, 16, 18, 22, 7]
-
+pins = [7, 22, 18, 16, 15, 13, 12, 11] 
 def setup():
 	GPIO.setmode(GPIO.BOARD)        # Numbers GPIOs by physical location
 	for pin in pins:

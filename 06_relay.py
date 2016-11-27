@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 import time
 
-RelayPin = 11    # pin11
+RelayPin = 12    # Set Pin to Physical Pin 12
 
 def setup():
 	GPIO.setmode(GPIO.BOARD)         # Numbers pins by physical location
@@ -11,7 +11,7 @@ def setup():
 
 def loop():
 	while True:
-		print '...clsoe'
+		print '...close'
 		GPIO.output(RelayPin, GPIO.LOW)
 		time.sleep(0.5)
 		print 'open...'
