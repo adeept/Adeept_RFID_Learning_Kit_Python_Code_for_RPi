@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 import time
 
-LedPin = 11    # pin11 this declares a pin to use
+LedPin = 11    # pin11 -- testing branches here too
 
 def setup():
 	GPIO.setmode(GPIO.BOARD)       # Numbers pins by physical location
