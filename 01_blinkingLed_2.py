@@ -1,4 +1,14 @@
 #!/usr/bin/env python
+
+#-----------------------------------------------------------
+# File name   : 01_blinkingLed_2.py
+# Description : make an led blinking.
+# Author      : Jason
+# E-mail      : jason@adeept.com
+# Website     : www.adeept.com
+# Date        : 2015/06/12
+#-----------------------------------------------------------
+
 import RPi.GPIO as GPIO
 import time
 
