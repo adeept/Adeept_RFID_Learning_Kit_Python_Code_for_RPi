@@ -2,9 +2,10 @@
 import RPi.GPIO as GPIO
 import time
 
-BeepPin = 11    # pin11
+BeepPin = 12    # pin11
 
 def setup():
+	GPIO.setwarnings(False)
 	GPIO.setmode(GPIO.BOARD)        # Numbers pins by physical location
 	GPIO.setup(BeepPin, GPIO.OUT)   # Set pin mode as output
 	GPIO.output(BeepPin, GPIO.HIGH) # Set pin to high(+3.3V) to off the beep
