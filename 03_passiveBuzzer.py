@@ -1,4 +1,14 @@
 #!/usr/bin/env python
+
+#-----------------------------------------------------------
+# File name   : 03_passiveBuzzer.py
+# Description : make a passive buzzer beep.
+# Author      : Jason
+# E-mail      : jason@adeept.com
+# Website     : www.adeept.com
+# Date        : 2015/06/12
+#-----------------------------------------------------------
+
 import RPi.GPIO as GPIO
 import time
 
@@ -23,3 +33,5 @@ try:
 except KeyboardInterrupt:
 	p.stop()
 	GPIO.cleanup()
+
+

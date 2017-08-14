@@ -1,10 +1,21 @@
 #!/usr/bin/env python
+
+#-----------------------------------------------------------
+# File name   : 04_tiltSwitch.py
+# Description : Control an LED by tilit switch.
+# Author      : Jason
+# E-mail      : jason@adeept.com
+# Website     : www.adeept.com
+# Date        : 2015/06/12
+#-----------------------------------------------------------
+
 import RPi.GPIO as GPIO
 
 LedPin  = 11
 TiltPin = 12
 
 def setup():
+	GPIO.setwarnings(False)
 	GPIO.setmode(GPIO.BOARD)       # Numbers pins by physical location
 	GPIO.setup(LedPin, GPIO.OUT)   # Set pin mode as output
 	GPIO.setup(TiltPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)

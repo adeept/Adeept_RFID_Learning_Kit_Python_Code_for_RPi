@@ -1,4 +1,14 @@
 #!/usr/bin/env python
+
+#-----------------------------------------------------------
+# File name   : 02_activeBuzzer.py
+# Description : make an active buzzer beep.
+# Author      : Jason
+# E-mail      : jason@adeept.com
+# Website     : www.adeept.com
+# Date        : 2015/06/12
+#-----------------------------------------------------------
+
 import RPi.GPIO as GPIO
 import time
 
@@ -28,4 +38,6 @@ if __name__ == '__main__':     # Program start from here
 		loop()
 	except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
 		destroy()
+
+
 
