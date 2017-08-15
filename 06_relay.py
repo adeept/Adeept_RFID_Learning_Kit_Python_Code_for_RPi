@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 #-----------------------------------------------------------
-# File name   : 01_blinkingLed_1.py
-# Description : make an led blinking.
+# File name   : 06_relay.py
+# Description : Toggle a relay.
 # Author      : Jason
 # E-mail      : jason@adeept.com
 # Website     : www.adeept.com
