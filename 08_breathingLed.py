@@ -1,9 +1,20 @@
 #!/usr/bin/env python
+
+#-----------------------------------------------------------
+# File name   : 08_breathingLed.py
+# Description : breathing LED.
+# Author      : Jason
+# E-mail      : jason@adeept.com
+# Website     : www.adeept.com
+# Date        : 2015/06/12
+#-----------------------------------------------------------
+
 import RPi.GPIO as GPIO
 import time
 
 LedPin = 12
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)       # Numbers pins by physical location
 GPIO.setup(LedPin, GPIO.OUT)   # Set pin mode as output
 GPIO.output(LedPin, GPIO.LOW)  # Set pin to low(0V)
