@@ -1,4 +1,14 @@
 #! /usr/bin/python
+
+#-----------------------------------------------------------
+# File name   : 14_distance.py
+# Description : measuring the distance.
+# Author      : Jason
+# E-mail      : jason@adeept.com
+# Website     : www.adeept.com
+# Date        : 2015/06/12
+#-----------------------------------------------------------
+
 import RPi.GPIO as GPIO
 import time
 
@@ -14,6 +24,7 @@ def checkdist():
 	t2 = time.time()
 	return (t2-t1)*340/2
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(16,GPIO.OUT,initial=GPIO.LOW)
 GPIO.setup(18,GPIO.IN)
@@ -24,5 +35,4 @@ try:
 		time.sleep(0.5)
 except KeyboardInterrupt:
 	GPIO.cleanup()
-
 
