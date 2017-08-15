@@ -1,9 +1,19 @@
 #!/usr/bin/env python
+
+#-----------------------------------------------------------
+# File name   : 13_matrixKeyboard.py
+# Description : 
+# Author      : Jason
+# E-mail      : jason@adeept.com
+# Website     : www.adeept.com
+# Date        : 2015/06/12
+#-----------------------------------------------------------
+
 import RPi.GPIO as GPIO
 import time
- 
+
 class keypad():
-    # CONSTANTS   
+    # CONSTANTS 
     KEYPAD = [
     [1,2,3,"A"],
     [4,5,6,"B"],
@@ -15,6 +25,7 @@ class keypad():
     COLUMN      = [16,18,22,7]
      
     def __init__(self):
+        GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
      
     def getKey(self):
@@ -48,7 +59,7 @@ class keypad():
         # Switch the i-th row found from scan to output
         GPIO.setup(self.ROW[rowVal], GPIO.OUT)
         GPIO.output(self.ROW[rowVal], GPIO.HIGH)
- 
+
         # Scan columns for still-pushed key/button
         # A valid key press should set "colVal"  between 0 and 2.
         colVal = -1
@@ -80,7 +91,8 @@ if __name__ == '__main__':
     while True:
         digit = None
         while digit == None:
-            digit = kp.getKey()    
+            digit = kp.getKey()
         # Print the result
         print digit
         time.sleep(0.5)
+
