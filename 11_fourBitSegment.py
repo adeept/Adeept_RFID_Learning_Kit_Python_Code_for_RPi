@@ -1,5 +1,14 @@
 #!/usr/bin/env python  
 
+#-----------------------------------------------------------
+# File name   : 11_fourBitSegment.py
+# Description : display 1,2,3,4....
+# Author      : Jason
+# E-mail      : jason@adeept.com
+# Website     : www.adeept.com
+# Date        : 2015/06/12
+#-----------------------------------------------------------
+
 import RPi.GPIO as GPIO  
 import time  
 
@@ -122,3 +131,4 @@ if __name__ == '__main__': #Program starting from here
 		loop()    
 	except KeyboardInterrupt:    
 		destroy()    
+
