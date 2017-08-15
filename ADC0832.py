@@ -3,8 +3,8 @@ import RPi.GPIO as GPIO
 import time
 
 ADC_CS  = 11
-ADC_CLK = 12
-ADC_DIO = 13
+ADC_DIO = 12
+ADC_CLK = 13
 
 def setup():
 	GPIO.setwarnings(False)
