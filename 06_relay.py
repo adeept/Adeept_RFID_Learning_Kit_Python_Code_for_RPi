@@ -1,10 +1,21 @@
 #!/usr/bin/env python
+
+#-----------------------------------------------------------
+# File name   : 01_blinkingLed_1.py
+# Description : make an led blinking.
+# Author      : Jason
+# E-mail      : jason@adeept.com
+# Website     : www.adeept.com
+# Date        : 2015/06/12
+#-----------------------------------------------------------
+
 import RPi.GPIO as GPIO
 import time
 
-RelayPin = 11    # pin11
+RelayPin = 12    # pin12
 
 def setup():
+	GPIO.setwarnings(False)
 	GPIO.setmode(GPIO.BOARD)         # Numbers pins by physical location
 	GPIO.setup(RelayPin, GPIO.OUT)   # Set pin mode as output
 	GPIO.output(RelayPin, GPIO.HIGH)
