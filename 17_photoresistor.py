@@ -1,4 +1,14 @@
 #!/usr/bin/env python
+
+#-----------------------------------------------------------
+# File name   : 17_photoResistor.py
+# Description : ...
+# Author      : Jason
+# E-mail      : jason@adeept.com
+# Website     : www.adeept.com
+# Date        : 2015/06/12
+#-----------------------------------------------------------
+
 import ADC0832
 import time
 
@@ -22,3 +32,4 @@ if __name__ == '__main__':
 	except KeyboardInterrupt: 
 		ADC0832.destroy()
 		print 'The end !'
+
