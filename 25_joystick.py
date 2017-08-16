@@ -1,30 +1,38 @@
 #!/usr/bin/env python
-
-import ADC0832
+#------------------------------------------------------
+#
+#		This is a program for JoystickPS2 Module.
+#
+#		This program depend on ADC0832 ADC chip. Follow 
+#	the instruction book to connect the module and 
+#	ADC0832 to your Raspberry Pi.
+#
+#------------------------------------------------------
+import ADC0832_tmp
 import RPi.GPIO as GPIO
 import time
 
 btn = 15	# Define button pin
 
 def setup():
-	ADC0832.setup()				# Setup ADC0832
+	ADC0832_tmp.setup()				# Setup ADC0832
 	GPIO.setmode(GPIO.BOARD)	# Numbers GPIOs by physical location
 	GPIO.setup(btn, GPIO.IN, pull_up_down=GPIO.PUD_UP)	# Setup button pin as input an pull it up
 	global state
 	state = ['up', 'down', 'left', 'right']	
 
 def getResult():	#get joystick result
-	if ADC0832.getResult1() == 0:
+	if ADC0832_tmp.getResult1() == 0:
 		return 1		#up
-	if ADC0832.getResult1() == 255:
+	if ADC0832_tmp.getResult1() == 255:
 		return 2		#down
 
-	if ADC0832.getResult() == 0:
+	if ADC0832_tmp.getResult() == 0:
 		return 3		#left
-	if ADC0832.getResult() == 255:
+	if ADC0832_tmp.getResult() == 255:
 		return 4		#right
 
-	if GPIO.input(btn) == 1:
+	if GPIO.input(btn) == 0:
 		print 'Button is pressed!'		# Button pressed
 
 def loop():
