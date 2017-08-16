@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 import MFRC522
 import signal
 import Buzzer
+import LED
 
 continue_reading = True
 
@@ -41,14 +42,16 @@ while continue_reading:
     # If we have the UID, continue
     if status == MIFAREReader.MI_OK:
         Buzzer.setup()
+        LED.setup()
         Buzzer.beep()
+        LED.led()
 
         # Print UID
         print "Card read UID: "+str(uid[0])+","+str(uid[1])+","+str(uid[2])+","+str(uid[3])
-        if uid[0]==3 and uid[1]==162 and uid[2]==103 and uid[3]==0:
+        if uid[0]==150 and uid[1]==110 and uid[2]==1 and uid[3]==164:
             print "Welcom, Jason :)"
 
-        if uid[0]==20 and uid[1]==104 and uid[2]==9 and uid[3]==111:
+        if uid[0]==133 and uid[1]==94 and uid[2]==233 and uid[3]==171:
             print "Welcom, Lucy :)"
     
         # This is the default key for authentication
