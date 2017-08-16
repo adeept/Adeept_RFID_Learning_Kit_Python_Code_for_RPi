@@ -1,4 +1,14 @@
 #!/usr/bin/env python
+
+#-----------------------------------------------------------
+# File name   : ledBar.py
+# Description : ...
+# Author      : Jason
+# E-mail      : jason@adeept.com
+# Website     : www.adeept.com
+# Date        : 2015/06/12
+#-----------------------------------------------------------
+
 import RPi.GPIO as GPIO
 import ADC0832
 import time
@@ -23,12 +33,13 @@ def ledBarCtrl(n):
 		GPIO.output(leds[n+i], GPIO.HIGH)
 
 def ledBarDestory():
+	GPIO.setmode(GPIO.BOARD)
 	for pin in leds:
 		GPIO.output(pin, GPIO.HIGH)
 	GPIO.cleanup()
 
 def map(x, in_min, in_max, out_min, out_max):
-    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min 
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
 def loop():
 	while True:
@@ -44,6 +55,7 @@ if __name__ == '__main__':
 	try:
 		loop()
 	except KeyboardInterrupt: 
-		ADC0832.destroy()
+#		ADC0832.destroy()
 		ledBarDestory()
 		print 'The end !'
+
