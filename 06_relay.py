@@ -11,7 +11,7 @@ def setup():
 
 def loop():
 	while True:
-		print '...clsoe'
+		print '...close' #corrected spelling
 		GPIO.output(RelayPin, GPIO.LOW)
 		time.sleep(0.5)
 		print 'open...'
@@ -28,4 +28,3 @@ if __name__ == '__main__':     # Program start from here
 		loop()
 	except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
 		destroy()
-

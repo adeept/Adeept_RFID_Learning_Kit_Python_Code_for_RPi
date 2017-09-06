@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 import time
 
-pins = [11, 12, 13, 15, 16, 18, 22, 7]
+pins = [11, 12, 13, 15, 16, 18, 22, 7] #this in an array not a dictionary
 
 def setup():
 	GPIO.setmode(GPIO.BOARD)        # Numbers GPIOs by physical location
@@ -13,7 +13,7 @@ def setup():
 def loop():
 	while True:
 		for pin in pins:
-			GPIO.output(pin, GPIO.LOW)	
+			GPIO.output(pin, GPIO.LOW)
 			time.sleep(0.5)
 			GPIO.output(pin, GPIO.HIGH)
 
@@ -28,4 +28,3 @@ if __name__ == '__main__':     # Program start from here
 		loop()
 	except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
 		destroy()
-
