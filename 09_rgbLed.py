@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import time
 
 colors = [0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0xFF00FF, 0x00FFFF]
-pins = {'pin_R':11, 'pin_G':12, 'pin_B':13}  # pins is a dict
+pins = {'pin_R':11, 'pin_G':12, 'pin_B':13}  # pins is a dictionary
 
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
 for i in pins:
@@ -25,11 +25,11 @@ def setColor(col):   # For example : col = 0x112233
 	R_val = (col & 0x110000) >> 16
 	G_val = (col & 0x001100) >> 8
 	B_val = (col & 0x000011) >> 0
-	
-	R_val = map(R_val, 0, 255, 0, 100)
-	G_val = map(G_val, 0, 255, 0, 100)
-	B_val = map(B_val, 0, 255, 0, 100)
-	
+
+	R_val = map(R_val, 0, 25, 0, 100)	#needed to change these values
+	G_val = map(G_val, 0, 50, 0, 100)	#to see the LED change colour
+	B_val = map(B_val, 0, 75, 0, 100)
+
 	p_R.ChangeDutyCycle(R_val)     # Change duty cycle
 	p_G.ChangeDutyCycle(G_val)
 	p_B.ChangeDutyCycle(B_val)
@@ -46,4 +46,3 @@ except KeyboardInterrupt:
 	for i in pins:
 		GPIO.output(pins[i], GPIO.HIGH)    # Turn off all leds
 	GPIO.cleanup()
-
