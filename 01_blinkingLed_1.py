@@ -12,7 +12,7 @@
 import RPi.GPIO as GPIO
 import time
 
-LedPin = 11    # pin11
+LedPin = 12    # declare pin as per diagram
 
 GPIO.setmode(GPIO.BOARD)       # Numbers pins by physical location
 GPIO.setup(LedPin, GPIO.OUT)   # Set pin mode as output
@@ -29,4 +29,3 @@ try:
 except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the flowing code will be  executed.
 	GPIO.output(LedPin, GPIO.HIGH)     # led off
 	GPIO.cleanup()                     # Release resource
-

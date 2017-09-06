@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 import time
 
-BZRPin = 11
+BZRPin = 12 #delare pin as per diagram
 
 GPIO.setmode(GPIO.BOARD)       # Numbers pins by physical location
 GPIO.setup(BZRPin, GPIO.OUT)   # Set pin mode as output
