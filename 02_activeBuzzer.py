@@ -12,23 +12,23 @@
 import RPi.GPIO as GPIO
 import time
 
-BeepPin = 12    # pin11
+BeepPin = 37    # pin37
 
 def setup():
 	GPIO.setwarnings(False)
 	GPIO.setmode(GPIO.BOARD)        # Numbers pins by physical location
 	GPIO.setup(BeepPin, GPIO.OUT)   # Set pin mode as output
-	GPIO.output(BeepPin, GPIO.HIGH) # Set pin to high(+3.3V) to off the beep
+	GPIO.output(BeepPin, GPIO.LOW) # Set pin to LOW(+3.3V) to off the beep
 
 def loop():
 	while True:
-		GPIO.output(BeepPin, GPIO.LOW)
-		time.sleep(0.1)
 		GPIO.output(BeepPin, GPIO.HIGH)
+		time.sleep(0.1)
+		GPIO.output(BeepPin, GPIO.LOW)
 		time.sleep(0.1)
 
 def destroy():
-	GPIO.output(BeepPin, GPIO.HIGH)    # beep off
+	GPIO.output(BeepPin, GPIO.LOW)    # beep off
 	GPIO.cleanup()                     # Release resource
 
 if __name__ == '__main__':     # Program start from here
