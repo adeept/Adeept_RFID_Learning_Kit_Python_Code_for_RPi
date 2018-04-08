@@ -101,8 +101,7 @@ class Adafruit_CharLCD:
     def home(self):
 
 	self.write4bits(self.LCD_RETURNHOME) # set cursor position to zero
-	self.delayMicroseconds(3000) # this command takes a long time!
-	
+	self.delayMicroseconds(3000) # this command takes a long time
 
     def clear(self):
 
@@ -114,13 +113,13 @@ class Adafruit_CharLCD:
 
 	self.row_offsets = [ 0x00, 0x40, 0x14, 0x54 ]
 
-	if ( row > self.numlines ): 
+	if ( row > self.numlines ):
 		row = self.numlines - 1 # we count rows starting w/0
 
 	self.write4bits(self.LCD_SETDDRAMADDR | (col + self.row_offsets[row]))
 
 
-    def noDisplay(self): 
+    def noDisplay(self):
 	""" Turn the display off (quickly) """
 
 	self.displaycontrol &= ~self.LCD_DISPLAYON
@@ -155,10 +154,10 @@ class Adafruit_CharLCD:
 	self.write4bits(self.LCD_DISPLAYCONTROL | self.displaycontrol)
 
 
-    def noBlink(self):
+    def Blink(self):
 	""" Turn on and off the blinking cursor """
 
-	self.displaycontrol &= ~self.LCD_BLINKON
+	self.displaycontrol |= ~self.LCD_BLINKON
 	self.write4bits(self.LCD_DISPLAYCONTROL | self.displaycontrol)
 
 
@@ -194,7 +193,7 @@ class Adafruit_CharLCD:
 	self.write4bits(self.LCD_ENTRYMODESET | self.displaymode)
 
 
-    def noAutoscroll(self): 
+    def noAutoscroll(self):
 	""" This will 'left justify' text from the cursor """
 
 	self.displaymode &= ~self.LCD_ENTRYSHIFTINCREMENT
@@ -236,9 +235,9 @@ class Adafruit_CharLCD:
 
     def pulseEnable(self):
 	self.GPIO.output(self.pin_e, False)
-	self.delayMicroseconds(1)		# 1 microsecond pause - enable pulse must be > 450ns 
+	self.delayMicroseconds(1)		# 1 microsecond pause - enable pulse must be > 450ns
 	self.GPIO.output(self.pin_e, True)
-	self.delayMicroseconds(1)		# 1 microsecond pause - enable pulse must be > 450ns 
+	self.delayMicroseconds(1)		# 1 microsecond pause - enable pulse must be > 450ns
 	self.GPIO.output(self.pin_e, False)
 	self.delayMicroseconds(1)		# commands need > 37us to settle
 
