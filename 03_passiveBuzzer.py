@@ -12,7 +12,7 @@
 import RPi.GPIO as GPIO
 import time
 
-BZRPin = 12
+BZRPin = 37
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)       # Numbers pins by physical location
@@ -26,10 +26,10 @@ try:
 	while True:
 		for f in range(100, 2000, 100):
 			p.ChangeFrequency(f)
-			time.sleep(0.2)
+			time.sleep(0.5)
 		for f in range(2000, 100, -100):
 			p.ChangeFrequency(f)
-			time.sleep(0.2)
+			time.sleep(0.5)
 except KeyboardInterrupt:
 	p.stop()
 	GPIO.cleanup()

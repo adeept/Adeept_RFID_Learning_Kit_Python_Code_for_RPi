@@ -7,7 +7,7 @@ channel = 18
 data = []
 j = 0
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 
 time.sleep(1)
 
@@ -42,7 +42,7 @@ while j < 40:
 
 	j += 1
 
-print "sensor is working."
+print("sensor is working.")
 print data
 
 humidity_bit = data[0:8]
@@ -67,9 +67,9 @@ for i in range(8):
 tmp = humidity + humidity_point + temperature + temperature_point
 
 if check == tmp:
-	print "temperature : ", temperature, ", humidity : " , humidity
+	print("temperature : ", temperature, ", humidity : " , humidity)
 else:
-	print "wrong"
-	print "temperature : ", temperature, ", humidity : " , humidity, " check : ", check, " tmp : ", tmp
+	print("wrong")
+	print("temperature : ", temperature, ", humidity : " , humidity, " check : ", check, " tmp : ", tmp)
 
 GPIO.cleanup()

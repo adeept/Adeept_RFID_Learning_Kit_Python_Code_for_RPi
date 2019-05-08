@@ -48,23 +48,27 @@ def setup():
 	GPIO.output(SRCLK, GPIO.LOW)
 
 def hc595_in(dat):
-	for bit in range(0, 8):	
+	for bit in range(0, 8):
 		GPIO.output(SDI, 0x80 & (dat << bit))
 		GPIO.output(SRCLK, GPIO.HIGH)
+		time.sleep(0.005)
 		GPIO.output(SRCLK, GPIO.LOW)
 
 def hc595_out():
 	GPIO.output(RCLK, GPIO.HIGH)
+	time.sleep(0.005)
 	GPIO.output(RCLK, GPIO.LOW)
 
 def loop():
-	for i in range(0, 96-8):
-		for k in range(0, 15):
-			for j in range(0, 8):
-				hc595_in(data[i+j])
-				hc595_in(tab[j])
-				hc595_out()
-				time.sleep(0.002)
+	while True:
+
+		for i in range(0, 96-8):
+			for k in range(0, 15):
+				for j in range(0, 8):
+					hc595_in(data[i+j])
+					hc595_in(tab[j])
+					hc595_out()
+					time.sleep(0.02)
 	
 
 def destroy():   # When program ending, the function is executed. 

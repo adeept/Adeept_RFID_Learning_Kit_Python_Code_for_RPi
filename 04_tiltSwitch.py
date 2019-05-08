@@ -10,28 +10,30 @@
 #-----------------------------------------------------------
 
 import RPi.GPIO as GPIO
-
-LedPin  = 11
-TiltPin = 12
+import time
+LedPin  = 37
+TiltPin = 40
 
 def setup():
 	GPIO.setwarnings(False)
 	GPIO.setmode(GPIO.BOARD)       # Numbers pins by physical location
 	GPIO.setup(LedPin, GPIO.OUT)   # Set pin mode as output
 	GPIO.setup(TiltPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-	GPIO.output(LedPin, GPIO.HIGH) # Set pin to high(+3.3V) to off the led
+	GPIO.output(LedPin, GPIO.LOW) # Set pin to LOW to off the led
 
 def loop():
 	while True:
-		if GPIO.input(TiltPin) == GPIO.LOW:
-			GPIO.output(LedPin, GPIO.LOW)
-			print 'LED ON...'
-		else:
+		if GPIO.input(TiltPin) == GPIO.HIGH:
 			GPIO.output(LedPin, GPIO.HIGH)
+			print 'LED ON...'
+			time.sleep(1.0)
+		else:
+			GPIO.output(LedPin, GPIO.LOW)
 			print '...LED OFF'
+			time.sleep(1.0)
 
 def destroy():
-	GPIO.output(LedPin, GPIO.HIGH)     # led off
+	GPIO.output(LedPin, GPIO.LOW)     # led off
 	GPIO.cleanup()                     # Release resource
 
 if __name__ == '__main__':     # Program start from here

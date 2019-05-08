@@ -12,7 +12,7 @@
 import RPi.GPIO as GPIO
 import time
 
-RelayPin = 12    # pin12
+RelayPin = 40    # pin40
 
 def setup():
 	GPIO.setwarnings(False)
@@ -22,7 +22,7 @@ def setup():
 
 def loop():
 	while True:
-		print '...clsoe'
+		print '...close'
 		GPIO.output(RelayPin, GPIO.LOW)
 		time.sleep(0.5)
 		print 'open...'
